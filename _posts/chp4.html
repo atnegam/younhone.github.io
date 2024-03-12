@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>chp4 文件和目录 | YOUNHONG</title>
+    <meta name="generator" content="VuePress 1.9.10">
+    
+    <meta name="description" content="Just For Funs">
+    
+    <link rel="preload" href="/assets/css/0.styles.2eb04dfe.css" as="style"><link rel="preload" href="/assets/js/app.db21eeee.js" as="script"><link rel="preload" href="/assets/js/2.41994088.js" as="script"><link rel="preload" href="/assets/js/1.c8db237e.js" as="script"><link rel="preload" href="/assets/js/33.735551ee.js" as="script"><link rel="prefetch" href="/assets/js/10.15cc71e2.js"><link rel="prefetch" href="/assets/js/11.eeea8807.js"><link rel="prefetch" href="/assets/js/12.5eb9b245.js"><link rel="prefetch" href="/assets/js/13.17fd33d5.js"><link rel="prefetch" href="/assets/js/14.223ea983.js"><link rel="prefetch" href="/assets/js/15.114dfd5c.js"><link rel="prefetch" href="/assets/js/16.53f82096.js"><link rel="prefetch" href="/assets/js/17.c2838453.js"><link rel="prefetch" href="/assets/js/18.3256f17f.js"><link rel="prefetch" href="/assets/js/19.b93d0f3d.js"><link rel="prefetch" href="/assets/js/20.a728a170.js"><link rel="prefetch" href="/assets/js/21.b10a0c85.js"><link rel="prefetch" href="/assets/js/22.3592a9a5.js"><link rel="prefetch" href="/assets/js/23.7c7aaac4.js"><link rel="prefetch" href="/assets/js/24.815070fc.js"><link rel="prefetch" href="/assets/js/25.954f28c0.js"><link rel="prefetch" href="/assets/js/26.451f8159.js"><link rel="prefetch" href="/assets/js/27.dbbb68f2.js"><link rel="prefetch" href="/assets/js/28.1def5d59.js"><link rel="prefetch" href="/assets/js/29.7acdc425.js"><link rel="prefetch" href="/assets/js/3.a6d02328.js"><link rel="prefetch" href="/assets/js/30.7c1cd9ae.js"><link rel="prefetch" href="/assets/js/31.a0bda515.js"><link rel="prefetch" href="/assets/js/32.716597da.js"><link rel="prefetch" href="/assets/js/4.0879a8c3.js"><link rel="prefetch" href="/assets/js/5.297d2d09.js"><link rel="prefetch" href="/assets/js/6.c8d912f9.js"><link rel="prefetch" href="/assets/js/7.5b9b1097.js"><link rel="prefetch" href="/assets/js/vendors~docsearch.03d43e08.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.2eb04dfe.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">YOUNHONG</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/me/me.html" class="nav-link">
+  关于
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/me/me.html" class="nav-link">
+  关于
+</a></div> <!----></nav>  <!----> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="chp4-文件和目录"><a href="#chp4-文件和目录" class="header-anchor">#</a> chp4 文件和目录</h2> <h3 id="_4-1-stat-获取文件有关的信息结构系列函数-存于struct-stat结构中"><a href="#_4-1-stat-获取文件有关的信息结构系列函数-存于struct-stat结构中" class="header-anchor">#</a> 4.1 stat() 获取文件有关的信息结构系列函数（存于struct stat结构中）</h3> <div class="language-C++ extra-class"><pre class="language-text"><code>int stat(const char *restrict pathname, struct stat *restrict buf);
+
+int fstat(int fd, struct stat* buf);
+
+int lstat(const char *restrict pathname, struct stat *restrict buf);
+
+int fstatat(int fd, const char *restrict pathname, struct stat *restrict buf, int flag);
+</code></pre></div><h3 id="_4-2-struct-stat结构解析"><a href="#_4-2-struct-stat结构解析" class="header-anchor">#</a> 4.2 struct stat结构解析</h3> <div class="language-C++ extra-class"><pre class="language-text"><code>struct stat {
+    mode_t　　　　　　　 st_mode;　　 /* file type &amp; mode (permissions) */
+    ino_t　　　　　　　　st_ino;　　　 /* i-node number (serial number) */
+    dev_t　　　　　　　　st_dev;　　　 /* device number (file system) */
+    dev_t　　　　　　　　st_rdev;　　 /* device number for special files */
+    nlink_t　　　　　　　st_nlink;　　/* number of links */
+    uid_t　　　　　　　　st_uid;　　　 /* user ID of owner */
+    gid_t　　　　　　　　st_gid;　　　 /* group ID of owner */
+    off_t　　　　　　　　st_size;　　 /* size in bytes, for regular files */
+    struct timespec　　 st_atime;　　/* time of last access */
+    struct timespec　　 st_mtime;　　/* time of last modification */
+    struct timespec　　 st_ctime;　　/* time of last file status change */
+    blksize_t　　　　　　st_blksize;　/* best I/O block size */
+    blkcnt_t　　　　　　 st_blocks;　 /* number of disk blocks allocated */
+};
+</code></pre></div><h4 id="mode-t-st-mode成员"><a href="#mode-t-st-mode成员" class="header-anchor">#</a> (mode_t)st_mode成员</h4> <p>文件类型位(7种)</p> <table><thead><tr><th>文件类型</th> <th>判别宏</th></tr></thead> <tbody><tr><td>普通文件</td> <td>S_ISREC()</td></tr> <tr><td>目录文件</td> <td>S_ISDIR()</td></tr> <tr><td>块特殊文件</td> <td>S_ISBLK()</td></tr> <tr><td>字符特殊文件</td> <td>S_ISCHR()</td></tr> <tr><td>管道或FIFO</td> <td>S_ISFIFO()</td></tr> <tr><td>套接字</td> <td>S_ISSOCK()</td></tr> <tr><td>符号链接</td> <td>S_ISLINK()</td></tr></tbody></table> <p>文件权限位（9种）</p> <table><thead><tr><th>常量</th> <th>含义</th></tr></thead> <tbody><tr><td>S_IRUSR</td> <td>用户读</td></tr> <tr><td>S_IWUSR</td> <td>用户写</td></tr> <tr><td>S_IXUSR</td> <td>用户执行</td></tr> <tr><td>S_IRGRP</td> <td>组读</td></tr> <tr><td>S_IRGWP</td> <td>组写</td></tr> <tr><td>S_IRGXP</td> <td>组执行</td></tr> <tr><td>S_IROTH</td> <td>其他读</td></tr> <tr><td>S_IWOTH</td> <td>其他写</td></tr> <tr><td>S_IXOTH</td> <td>其他执行</td></tr></tbody></table> <p>执行时设置ID权限位（2种）</p> <table><thead><tr><th>常量</th> <th>含义</th></tr></thead> <tbody><tr><td>S_ISUID</td> <td>执行时设置用户ID</td></tr> <tr><td>S_ISGID</td> <td>执行时设置组ID</td></tr></tbody></table> <p>其他权限位
+粘着位</p> <h4 id="st-uid和st-gid成员"><a href="#st-uid和st-gid成员" class="header-anchor">#</a> st_uid和st_gid成员</h4> <p>st_uid指定文件用户ID
+<br>
+st_gid指定文件组ID</p> <h4 id="st-size成员"><a href="#st-size成员" class="header-anchor">#</a> st_size成员</h4> <p>文件长度</p> <h4 id="st-nlink成员"><a href="#st-nlink成员" class="header-anchor">#</a> st_nlink成员</h4> <p>链接记数</p> <h4 id="st-mtim-st-atim-st-ctim成员"><a href="#st-mtim-st-atim-st-ctim成员" class="header-anchor">#</a> st_mtim st_atim st_ctim成员</h4> <h3 id="_4-3-access-按进程实际用户id组id测试访问权限系列函数"><a href="#_4-3-access-按进程实际用户id组id测试访问权限系列函数" class="header-anchor">#</a> 4.3 access() 按进程实际用户ID组ID测试访问权限系列函数</h3> <div class="language-C++ extra-class"><pre class="language-text"><code>int access(const char *pathname, int mode);
+
+int faccessat(int fd, const char *pathname, int mode, int flag);
+</code></pre></div><table><thead><tr><th>mode</th> <th>含义</th></tr></thead> <tbody><tr><td>R_OK</td> <td>测试读权限</td></tr> <tr><td>W_OK</td> <td>测试写权限</td></tr> <tr><td>X_OK</td> <td>测试执行权限</td></tr></tbody></table> <div class="language-C++ extra-class"><pre class="language-text"><code>#include &lt;stdio.h&gt;
+#include &lt;unistd.h&gt;
+int main(int argc, char *argv[])
+{
+    printf(&quot;argc num: %d\n&quot;, argc);
+
+    if(argc != 2)
+        printf(&quot;error1\n&quot;);
+    if(access(argv[1], R_OK) &lt; 0)
+        printf(&quot;error2\n&quot;);
+    else
+        printf(&quot;read access OK\n&quot;);
+    if (open(argv[1], O_RDONLY) &lt; 0)
+        printf(&quot;open error\n&quot;);
+    else
+        printf(&quot;open OK\n&quot;);
+    return 0;
+}
+</code></pre></div><h3 id="_4-4-umask-为进程设置文件模式创建屏蔽字"><a href="#_4-4-umask-为进程设置文件模式创建屏蔽字" class="header-anchor">#</a> 4.4 umask() 为进程设置文件模式创建屏蔽字</h3> <div class="language-C++ extra-class"><pre class="language-text"><code>mode_t umask(mode_t cmask); #返回之前的文件模式创建屏蔽字
+
+#include &lt;stdio.h&gt;
+#include &lt;sys/stat.h&gt;
+#include &lt;fcntl.h&gt;
+
+#define RWRWRW (S_IRUSR|S_IWUSR|S_IRGRP|S_IWGRP|S_IROTH|S_IWOTH)
+
+int main()
+{
+    umask(0);
+    if(creat(&quot;foo&quot;, RWRWRW) &lt; 0)
+        printf(&quot;create error1\n&quot;);
+    umask(S_IRGRP|S_IWGRP|S_IROTH|S_IWOTH);
+    if (creat(&quot;bar&quot;, RWRWRW)&lt;0)
+        printf(&quot;create error2\n&quot;);
+    return 0;
+}
+</code></pre></div><table><thead><tr><th>屏蔽位（8进制）</th> <th>含义</th></tr></thead> <tbody><tr><td>0400</td> <td>用户读</td></tr> <tr><td>0200</td> <td>用户写</td></tr> <tr><td>0100</td> <td>用户执行</td></tr> <tr><td>0040</td> <td>组读</td></tr> <tr><td>0020</td> <td>组写</td></tr> <tr><td>0010</td> <td>组执行</td></tr> <tr><td>0004</td> <td>其他读</td></tr> <tr><td>0002</td> <td>其他写</td></tr> <tr><td>0001</td> <td>其他执行</td></tr></tbody></table> <p>exp：027 阻止同组成员写你的文件以及其他用户读、写或执行你的文件</p> <h3 id="_4-5-chmod-更改现有文件的访问权限"><a href="#_4-5-chmod-更改现有文件的访问权限" class="header-anchor">#</a> 4.5 chmod() 更改现有文件的访问权限</h3> <div class="language-C++ extra-class"><pre class="language-text"><code>int chmod(const char *pathname, mode_t mode);
+
+int fchmod(int fd, mode_t mode);
+</code></pre></div><table><thead><tr><th>mode</th> <th>说明</th></tr></thead> <tbody><tr><td>S_ISUID</td> <td>执行时设置用户ID</td></tr> <tr><td>S_ISGID</td> <td>执行时设置组ID</td></tr> <tr><td>S_ISVTX</td> <td>黏着位</td></tr> <tr><td>S_IRUSR</td> <td>用户读</td></tr> <tr><td>S_IWUSR</td> <td>用户写</td></tr> <tr><td>S_IXUSR</td> <td>用户执行</td></tr> <tr><td>S_IRGRP</td> <td>组读</td></tr> <tr><td>S_IRGWP</td> <td>组写</td></tr> <tr><td>S_IRGXP</td> <td>组执行</td></tr> <tr><td>S_IROTH</td> <td>其他读</td></tr> <tr><td>S_IWOTH</td> <td>其他写</td></tr> <tr><td>S_IXOTH</td> <td>其他执行</td></tr></tbody></table> <div class="language-C++ extra-class"><pre class="language-text"><code>#include &lt;stdio.h&gt;
+#include &lt;sys/stat.h&gt;
+
+int main()
+{
+    struct stat statbuf;
+    if(stat(&quot;foo&quot;, &amp;statbuf) &lt; 0)
+        printf(&quot;stat error\n&quot;);
+    if(chmod(&quot;foo&quot;, (statbuf.st_mode &amp; ~S_IXGRP) | S_ISGID) &lt; 0)
+        printf(&quot;chmod error\n&quot;);
+    // if(chmod(&quot;bar&quot;, 0777) &lt; 0 )
+    if(chmod(&quot;bar&quot;, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH) &lt; 0 )
+        printf(&quot;chmod error for bar\n&quot;);
+    return 0;
+}
+</code></pre></div><h3 id="_4-6-chown-更改文件的用户id和组id"><a href="#_4-6-chown-更改文件的用户id和组id" class="header-anchor">#</a> 4.6 chown() 更改文件的用户ID和组ID</h3> <div class="language-C++ extra-class"><pre class="language-text"><code>int chown(const char *pathname, uid_t owner, gid_t group);
+
+</code></pre></div><h3 id="_4-7-文件系统"><a href="#_4-7-文件系统" class="header-anchor">#</a> 4.7 文件系统</h3> <h3 id="_4-8-link-链接操作系列函数"><a href="#_4-8-link-链接操作系列函数" class="header-anchor">#</a> 4.8 link() 链接操作系列函数</h3> <div class="language-C++ extra-class"><pre class="language-text"><code>int link(const char *existingpath, const char *newpath);
+
+int unlink(const char *pathname);
+</code></pre></div><h4 id="rename-文件和目录重命名"><a href="#rename-文件和目录重命名" class="header-anchor">#</a> rename() 文件和目录重命名</h4> <div class="language-C++ extra-class"><pre class="language-text"><code>int rename(const char *oldname, const char *newname);
+
+</code></pre></div><h3 id="_4-9-symlink-readlink-创建和读取链接"><a href="#_4-9-symlink-readlink-创建和读取链接" class="header-anchor">#</a> 4.9 symlink() readlink() 创建和读取链接</h3> <div class="language-C++ extra-class"><pre class="language-text"><code>int symlink(const char *actualpath, const char *sympath);
+
+ssize_t readlink(const char *restrict pathname, char *restrict buf,
+
+size_t bufsize);
+</code></pre></div><h4 id="_4-10-mkdir-rmdir-创建删除目录"><a href="#_4-10-mkdir-rmdir-创建删除目录" class="header-anchor">#</a> 4.10 mkdir() rmdir() 创建删除目录</h4> <div class="language-C++ extra-class"><pre class="language-text"><code>int mkdir(const char *pathname, mode_t mode);
+
+int rmdir(const char *pathname);
+</code></pre></div><h4 id="_4-11-目录操作相关函数"><a href="#_4-11-目录操作相关函数" class="header-anchor">#</a> 4.11 目录操作相关函数</h4> <div class="language-C++ extra-class"><pre class="language-text"><code>DIR *opendir(const char *pathname);
+
+DIR *fdopendir(int fd);
+
+struct dirent *readdir(DIR *dp);
+
+void rewinddir(DIR *dp);
+
+int closedir(DIR *dp);
+
+long telldir(DIR *dp);
+
+void seekdir(DIR *dp, long loc);
+</code></pre></div><h4 id="_4-12-chdir-改变进程的工作目录"><a href="#_4-12-chdir-改变进程的工作目录" class="header-anchor">#</a> 4.12 chdir() 改变进程的工作目录</h4> <div class="language-C++ extra-class"><pre class="language-text"><code>int chdir(const char *pathname);
+
+int fchdir(int fd);
+</code></pre></div><h4 id="_4-13-获得工作目录完整路径"><a href="#_4-13-获得工作目录完整路径" class="header-anchor">#</a> 4.13 获得工作目录完整路径</h4> <div class="language-C++ extra-class"><pre class="language-text"><code>char *getcwd(char *buf, size_t size);
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.db21eeee.js" defer></script><script src="/assets/js/2.41994088.js" defer></script><script src="/assets/js/1.c8db237e.js" defer></script><script src="/assets/js/33.735551ee.js" defer></script>
+  </body>
+</html>
